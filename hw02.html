@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>课程表</title>
+    <style>
+        table {
+            margin: 10vw;
+            width: 80vw;
+            height: 80vh;
+        }
+
+        td {
+            height: 15vh;
+            width: 10vw;
+            font-family: serif;
+            font-size: 115%;
+            text-align: center;
+            background-color: rgb(178, 220, 248);
+        }
+
+        td.biaorong:hover {
+            position: relative;
+            right: 8px;
+            bottom: 10px;
+            box-shadow: 5px 5px 8px rgb(110, 99, 99);
+        }
+
+        .biaotou {
+            font-family:Courier;
+            background-color: rgb(79, 143, 206);
+        }
+
+        .cell>.detail {
+            display: none;
+        }
+
+        .cell>.detail.open {
+            display: block;
+            position: absolute;
+            height: 25vh;
+            width: 20vw;
+            background-color: rgb(142, 250, 160);
+        }
+    </style>
+
+<body>
+
+    <table id="table">
+    </table>
+
+    <script>
+        let tblEl = document.getElementById('table');
+        for (let i = 0; i < 5; i++) {
+            let trEl = document.createElement('tr');
+            for (let j = 0; j < 8; j++) {
+                let tdEl = document.createElement('td');
+
+                let divEl = document.createElement('div');
+                divEl.className = 'cell';
+
+                let briefDivEl = document.createElement('div');
+                briefDivEl.id = (String(i) + j);
+                briefDivEl.innerHTML = ' ';
+                divEl.append(briefDivEl);
+
+                let detailDivEl = document.createElement('div');
+                detailDivEl.className = 'detail';
+                detailDivEl.innerHTML = ' ';
+                detailDivEl.id = (String(i) + j + 'a');
+
+                detailDivEl.onmouseout = function (event) {
+                    let names = detailDivEl.className.split(' ');
+                    names = names.filter((x) => x != 'open')
+                    detailDivEl.className = names.join(' ');
+                }
+                divEl.append(detailDivEl);
+
+                tdEl.onclick = function (event) {
+                    let names = detailDivEl.className.split(' ');
+                    if (names.indexOf('open') >= 0) {
+                        names = names.filter((x) => x != 'open')
+                    } else {
+                        names.push('open');
+                    }
+                    console.log(names);
+                    detailDivEl.className = names.join(' ');
+                };
+
+                let classNames = [];
+                if (i == 0 || j == 0) {
+                    classNames.push('biaotou');
+                }
+                else {
+                    classNames.push('biaorong');
+                }
+
+                tdEl.className = classNames.join(' ');
+                tdEl.append(divEl);
+                trEl.append(tdEl);
+            }
+            tblEl.append(trEl);
+        }
+
+        let elem00 = document.getElementById('00');
+        elem00.innerHTML = '信息专业 <br> 大二第二学期';
+        let elem01 = document.getElementById('01');
+        elem01.innerHTML = '星期一';
+        let elem02 = document.getElementById('02');
+        elem02.innerHTML = '星期二';
+        let elem03 = document.getElementById('03');
+        elem03.innerHTML = '星期三';
+        let elem04 = document.getElementById('04');
+        elem04.innerHTML = '星期四';
+        let elem05 = document.getElementById('05');
+        elem05.innerHTML = '星期五';
+        let elem06 = document.getElementById('06');
+        elem06.innerHTML = '星期六';
+        let elem07 = document.getElementById('07');
+        elem07.innerHTML = '星期日';
+        let elem10 = document.getElementById('10');
+        elem10.innerHTML = '第一大节课';
+        let elem20 = document.getElementById('20');
+        elem20.innerHTML = '第二大节课';
+        let elem30 = document.getElementById('30');
+        elem30.innerHTML = '第三大节课';
+        let elem40 = document.getElementById('40');
+        elem40.innerHTML = '第四大节课';
+        let elem11 = document.getElementById('11');
+        elem11.innerHTML = ' web应用开发';
+        let elem12 = document.getElementById('12');
+        elem12.innerHTML = '大学英语(A)';
+        let elem13 = document.getElementById('13');
+        elem13.innerHTML = '管理信息系统';
+        let elem14 = document.getElementById('14');
+        elem14.innerHTML = '运营管理 <br> <br> 数据库原理及应用';
+        let elem15 = document.getElementById('15');
+        elem15.innerHTML = '大学英语(A)';
+        let elem21 = document.getElementById('21');
+        elem21.innerHTML = '毛泽东思想与中国特色社会主义理论体系概论';
+        let elem22 = document.getElementById('22');
+        elem22.innerHTML = '管理科学基础';
+        let elem23 = document.getElementById('23');
+        elem23.innerHTML = '毛泽东思想与中国特色社会主义理论体系概论';
+        let elem24 = document.getElementById('24');
+        elem24.innerHTML = '管理科学基础';
+        let elem25 = document.getElementById('25');
+        elem25.innerHTML = '运营管理';
+        let elem31 = document.getElementById('31');
+        elem31.innerHTML = '管理信息系统';
+        let elem32 = document.getElementById('32');
+        elem32.innerHTML = '形势与政策2';
+        let elem33 = document.getElementById('33');
+        elem33.innerHTML = '会计学';
+        let elem34 = document.getElementById('34');
+        elem34.innerHTML = '体育课 羽毛球';
+        let elem35 = document.getElementById('35');
+        elem35.innerHTML = '毛泽东思想与中国特色社会主义理论体系概论';
+        let elem41 = document.getElementById('41');
+        elem41.innerHTML = '电子商务';
+        let elem42 = document.getElementById('42');
+        elem42.innerHTML = '数据库原理及应用';
+        let elem44 = document.getElementById('44');
+        elem44.innerHTML = '会计学';
+
+        let elem00a = document.getElementById('00a');
+        elem00a.innerHTML = '信息专业 <br> 大二第二学期';
+        let elem01a = document.getElementById('01a');
+        elem01a.innerHTML = '星期一';
+        let elem02a = document.getElementById('02a');
+        elem02a.innerHTML = '星期二';
+        let elem03a = document.getElementById('03a');
+        elem03a.innerHTML = '星期三';
+        let elem04a = document.getElementById('04a');
+        elem04a.innerHTML = '星期四';
+        let elem05a = document.getElementById('05a');
+        elem05a.innerHTML = '星期五';
+        let elem06a = document.getElementById('06a');
+        elem06a.innerHTML = '星期六';
+        let elem07a = document.getElementById('07a');
+        elem07a.innerHTML = '星期日';
+        let elem10a = document.getElementById('10a');
+        elem10a.innerHTML = '第一大节课 <br> 8:20-10:00';
+        let elem20a = document.getElementById('20a');
+        elem20a.innerHTML = '第二大节课 <br> 10:20-12:00';
+        let elem30a = document.getElementById('30a');
+        elem30a.innerHTML = '第三大节课 <br> 14:00-15:40';
+        let elem40a = document.getElementById('40a');
+        elem40a.innerHTML = '第四大节课 <br> 16:00-17:40';
+        let elem11a = document.getElementById('11a');
+        elem11a.innerHTML = '<br>课程名：web应用开发 <br> 教室：西区第一公共教学楼C411 <br> 任课教师：吕成功 <br> 节数：周一第一大节课 <br> 周数：1 - 15周';
+        let elem12a = document.getElementById('12a');
+        elem12a.innerHTML = '<br>课程名：大学英语(A) <br> 教室：西区第一公共教学楼C221 <br> 任课教师：张蔚 <br> 节数：周二第一大节课  <br> 周数：1-17周';
+        let elem13a = document.getElementById('13a');
+        elem13a.innerHTML = '<br>课程名：管理信息系统 <br> 教室：西区第一公共教学楼C105 <br> 任课教师：刘烨 <br> 节数：周三第一大节课 <br> 周数：1-15周（单周）';
+        let elem14a = document.getElementById('14a');
+        elem14a.innerHTML = '<br>课程名：运营管理/数据库原理及应用 <br> 教室：西区第一公共教学楼C405 <br> 任课教师：刘亮/吴君 <br> 节数：周四第一大节课 <br> 周数：1-15周（单周/双周）';
+        let elem15a = document.getElementById('15a');
+        elem15a.innerHTML = '<br>课程名：大学英语(A) <br> 教室：西区第一公共教学楼C219/西区外语学院楼219 <br> 任课教师：张蔚 <br> 节数：周五第一大节课 <br> 周数：1-17周（单周/双周）';
+        let elem21a = document.getElementById('21a');
+        elem21a.innerHTML = '<br>课程名：毛泽东思想与中国特色社会主义理论体系概论 <br> 教室：西区第一公共教学楼A120 <br> 任课教师：顾洪英 <br> 节数：周一第二大节课 <br> 周数：1-16周';
+        let elem22a = document.getElementById('22a');
+        elem22a.innerHTML = '<br>课程名：管理科学基础 <br> 教室：西区第一公共教学楼C411 <br> 任课教师：赵方方 <br> 节数：周二第二大节课 <br> 周数：3-17周';
+        let elem23a = document.getElementById('23a');
+        elem23a.innerHTML = '<br>课程名：毛泽东思想与中国特色社会主义理论体系概论 <br> 教室：西区第一公共教学楼A120 <br> 任课教师：顾洪英 <br> 节数：周三第二大节课 <br> 周数：1-16周';
+        let elem24a = document.getElementById('24a');
+        elem24a.innerHTML = '<br>课程名：管理科学基础 <br> 教室：西区第一公共教学楼C411 <br> 任课教师：赵方方 <br> 节数：周四第二大节课 <br> 周数：3-17周';
+        let elem25a = document.getElementById('25a');
+        elem25a.innerHTML = '<br>课程名：运营管理 <br> 教室：西区第一公共教学楼B405 <br> 任课教师：刘亮 <br> 节数：周五第二大节课 <br> 周数：1-15周';
+        let elem31a = document.getElementById('31a');
+        elem31a.innerHTML = '<br>课程名：管理信息系统<br> 教室：西区第一公共教学楼C105 <br> 任课教师：刘烨 <br> 节数：周一第三大节课 <br> 周数：1-15周';
+        let elem32a = document.getElementById('32a');
+        elem32a.innerHTML = '<br>课程名：形势与政策2 <br> 教室：西区第一公共教学楼C123 <br> 任课教师：邵夏、李坤 <br> 节数：周二第三大节课 <br> 周数：5-7周';
+        let elem33a = document.getElementById('33a');
+        elem33a.innerHTML = '<br>课程名：会计学 <br> 教室：西区第一公共教学楼B101 <br> 任课教师：刘晓晖 <br> 节数：周三第一大节课 <br> 周数：1-17周（单周）';
+        let elem34a = document.getElementById('34a');
+        elem34a.innerHTML = '<br>课程名：体育课（羽毛球）<br> 场地：体育馆 <br> 任课教师：薛松 <br> 节数：周四第三大节课 <br> 周数：1-14周';
+        let elem35a = document.getElementById('35a');
+        elem35a.innerHTML = '<br>课程名：毛泽东思想与中国特色社会主义理论体系概论<br> 教室：西区第一公共教学楼A120 <br> 任课教师：顾洪英 <br> 节数：周五第三大节课 <br> 周数：1-16周';
+        let elem41a = document.getElementById('41a');
+        elem41a.innerHTML = '<br>课程名：电子商务 <br> 教室：西区第一公共教学楼B303 <br> 任课教师：张亮 <br> 节数：周一第三大节课 <br> 周数：3-17周';
+        let elem42a = document.getElementById('42a');
+        elem42a.innerHTML = '<br>课程名：数据库原理及应用 <br> 教室：西区第一公共教学楼C109 <br> 任课教师：吴君 <br> 节数：周二第二大节课 <br> 周数：1-15周';
+        let elem44a = document.getElementById('44a');
+        elem44a.innerHTML = '<br>课程名：会计学 <br> 教室：西区第一公共教学楼B101 <br> 任课教师：刘晓晖 <br> 节数：周四第二大节课 <br> 周数：1-17周';
+    </script>
+</body>
+
+</html>
